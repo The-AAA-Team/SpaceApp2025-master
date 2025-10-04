@@ -1,3 +1,10 @@
 * {
   background-color: #2E1760;
 }
+
+
+.main-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
