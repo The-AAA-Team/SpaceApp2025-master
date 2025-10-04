@@ -1,0 +1,14 @@
+.Footer{
+    background-color: black;
+    width: 100vw;
+    height: 2.5vh;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+}
+
+.Text{
+    font-size: 25px;
+    text-align: center;
+}
