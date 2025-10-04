@@ -11,11 +11,11 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-//       <div className = "main container">
-//         <LeftContainer />
-//         <RightContainer />
-//       </div>
+      <div className = "main container">
+{/* //         <LeftContainer /> */}
+{/* //         <RightContainer /> */}
       <Contents />
+     </div>
       <Footer />
     </div>
   );
