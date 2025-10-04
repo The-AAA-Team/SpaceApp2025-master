@@ -1,3 +1,6 @@
-* {
-  background-color: #2E1760;
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
