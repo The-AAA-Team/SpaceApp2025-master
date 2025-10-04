@@ -1,10 +1,8 @@
 # data_processor.py
 import json
 import re
-import spacy
 from pathlib import Path
 
-nlp = spacy.load("en_core_web_sm")
 
 def extract_sections(summary: str):
     """Extracts structured sections (Purpose, Methods, Findings, etc.) from the summary text."""
@@ -27,7 +25,16 @@ def infer_title(summary: str):
     return first_sentence.strip()[:120]
 
 
+def extract_author(summary: str):
+    """Tries to find author mentions from phrases like 'by Smith et al.'."""
+    match = re.search(r"\bby\s+([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)(?:\s+et\s+al\.)?", summary)
+    if match:
+        return match.group(1).strip()
+    return "Unknown"
+
+
 def enrich_data(input_file="data.json", output_file="processed_data.json"):
+    """Loads saved summaries, extracts title, author, and structured sections."""
     path = Path(input_file)
     if not path.exists():
         print(f"[ERROR] Could not find {input_file}")
@@ -45,24 +52,16 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
         summary = record.get("summary", "") if isinstance(record, dict) else str(record)
         url = record.get("url", f"Unknown_{i}") if isinstance(record, dict) else f"Unknown_{i}"
 
-        doc = nlp(summary)
-
-        # Extract metadata
-        entities = sorted({ent.text for ent in doc.ents if len(ent.text) > 2})
-        keywords = sorted({
-            token.lemma_.lower() for token in doc
-            if token.is_alpha and not token.is_stop and len(token.text) > 3
-        })
-        sections = extract_sections(summary)
+        author = extract_author(summary)
         title = infer_title(summary)
+        sections = extract_sections(summary)
 
         enriched.append({
             "id": i + 1,
             "url": url,
+            "author": author,
             "title": title,
             "summary": summary,
-            "entities": entities,
-            "keywords": keywords,
             "sections": sections
         })
 
@@ -70,6 +69,7 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
         json.dump(enriched, f, indent=2)
 
     print(f"[INFO] ✅ Enriched {len(enriched)} summaries → {output_file}")
+
 
 if __name__ == "__main__":
     enrich_data()

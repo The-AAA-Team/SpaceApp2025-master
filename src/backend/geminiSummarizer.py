@@ -1,36 +1,64 @@
 # gemini_summarizer.py
 import os
 import google.generativeai as genai
+from dotenv import load_dotenv
 
-# Configure Gemini API
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBsQbvaYpqmABR7tGqgH9t_-k6GawjMlys"  # replace with your real key
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+# Load API key securely
+load_dotenv()
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("[ERROR] Missing GOOGLE_API_KEY in environment or .env file.")
+genai.configure(api_key=api_key)
 
-def summarize_text(text):
+def summarize_text(text: str):
     """
-    Sends text to Gemini and returns a concise summary.
-    Automatically trims long input to stay under token limits.
+    Uses Gemini to produce a structured summary including title, author, and key sections.
+    Returns a dictionary formatted for your data pipeline.
     """
-    if not text:
-        return "No content provided."
- 
+    if not text or len(text.strip()) == 0:
+        return {"error": "Empty input text"}
+
+    # Choose best available model
     model = genai.GenerativeModel("gemini-2.5-pro")
-    prompt = f"""
-    Summarize the following scientific article in 5–7 concise bullet points.
-    Focus on:
-    - Research purpose
-    - Key findings
-    - Methods used
-    - Conclusions
-    - Any implications or future work
 
-    Article Text:
+    prompt = f"""
+    You are a scientific summarization assistant for NASA bioscience research.
+    Read the following article and output a JSON object with these fields:
+
+    {{
+      "title": "Concise, descriptive title",
+      "author": "Main author name if identifiable, else Unknown",
+      "summary": "Overall summary in 5–7 concise bullet points",
+      "sections": {{
+        "Research Purpose": "...",
+        "Methods Used": "...",
+        "Key Findings": "...",
+        "Conclusions": "...",
+        "Implications & Future Work": "..."
+      }}
+    }}
+
+    Keep the output machine-readable JSON only — no commentary or extra text.
+    Article:
     {text[:15000]}
     """
 
     try:
         response = model.generate_content(prompt)
-        return response.text.strip()
+        raw_output = response.text.strip()
+
+        # Gemini sometimes outputs fenced JSON ```json ... ```
+        import re, json
+        raw_output = re.sub(r"^```json|```$", "", raw_output).strip()
+
+        # Attempt to parse the JSON safely
+        try:
+            result = json.loads(raw_output)
+        except json.JSONDecodeError:
+            result = {"summary": raw_output}
+
+        return result
+
     except Exception as e:
         print(f"[ERROR] Gemini summarization failed: {e}")
-        return None
+        return {"error": str(e)}
