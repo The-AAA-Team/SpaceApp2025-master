@@ -1,10 +1,6 @@
-* {
-  background-color: #2E1760;
-}
-
-
-.main-container::after {
-  content: "";
-  display: table;
-  clear: both;
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
