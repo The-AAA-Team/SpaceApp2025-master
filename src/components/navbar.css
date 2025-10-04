@@ -19,14 +19,14 @@ h1 {
 }
 
   .nav-brand {
-    font-size: 1.5rem;
+    font-size: 10rem;
     letter-spacing: 2px;
   }
   
   
   .nav-brand h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 5rem;
   }
   
   .search-form {
