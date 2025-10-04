@@ -6,10 +6,27 @@
     padding: 1rem 2rem;
     color: white;
   }
+
+  @font-face {
+    font-family: "Andromeda";
+    src: url("./fonts/Andromeda-eR2n.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+h1 {
+    font-family: "Andromeda", sans-serif;
+}
+
+  .nav-brand {
+    font-size: 10rem;
+    letter-spacing: 2px;
+  }
+  
   
   .nav-brand h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 5rem;
   }
   
   .search-form {

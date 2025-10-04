@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <h1>AAA</h1>
+        <h1>DataShip</h1>
       </div>
 
       <form className="search-form" onSubmit={handleSubmit}>
