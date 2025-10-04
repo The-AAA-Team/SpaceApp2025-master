@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './left-container.css';
+import KnowledgeGraph from './knowledgegraph.js'
 
 function LeftContainer() {
   const [filters, setFilters] = useState({
@@ -87,6 +88,9 @@ function LeftContainer() {
           </button>
         </form>
       </nav>
+        <div class="knowledge-contents">
+            <KnowledgeGraph />  
+        </div>
     </div>
   );
 }
