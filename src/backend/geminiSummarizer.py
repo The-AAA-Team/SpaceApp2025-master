@@ -3,7 +3,7 @@ import os
 import google.generativeai as genai
 
 # Configure Gemini API
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDaLPwCTqHAUh6wonNmvzQZ4gQeERgOrNA"  # replace with your real key
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBsQbvaYpqmABR7tGqgH9t_-k6GawjMlys"  # replace with your real key
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 def summarize_text(text):
@@ -13,8 +13,8 @@ def summarize_text(text):
     """
     if not text:
         return "No content provided."
-
-    model = genai.GenerativeModel("gemini-pro")
+ 
+    model = genai.GenerativeModel("gemini-2.5-pro")
     prompt = f"""
     Summarize the following scientific article in 5–7 concise bullet points.
     Focus on:
