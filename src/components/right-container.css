@@ -17,7 +17,18 @@
     color: #DFF3E4;
     background-color: #4f2f96;
     border-radius: 1rem;
-    align-items: center;
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+a:hover{
+    color: #02eeff;
+}
+
+a {    color: #DFF3E4;
+}
+
+a:link{
+    text-decoration: none;
 }
