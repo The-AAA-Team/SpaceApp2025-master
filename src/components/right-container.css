@@ -1,0 +1,23 @@
+.right-container {
+    height: 100%;
+    border-radius: 1rem;
+    width: 58%;
+    float: right;
+    margin:5px;
+}
+
+.right-rows {
+    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex: 1;
+    font-size: 30px;
+    color: #DFF3E4;
+    background-color: #4f2f96;
+    border-radius: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
