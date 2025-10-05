@@ -10,21 +10,18 @@
   }
 
 .right-rows {
-    max-height: 130px;
-    min-height: 130px;
+    max-height: 120px;
+    min-height: 120px;
     margin: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 30px;
-    color: #DFF3E4;
+    color: #120d28;
     background-color: #7180B9;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: left;
     font-size: 18px;
     font-weight: bold;
 }
@@ -34,10 +31,11 @@
     color: inherit;
     border: none;
     font: inherit;
+    text-align: left;
 }
 
 button:hover{
-    color: #02eeff;
+    color: #DFF3E4; 
     text-decoration:underline;
 }
 
