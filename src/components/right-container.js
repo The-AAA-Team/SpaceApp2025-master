@@ -3,7 +3,6 @@ import publicationsData from './data/publications.json'
 import React, { useState, useEffect } from 'react'
 import Summary from './summary.js'
 import { Context } from './context'
-import axios from 'axios'
 
 function RightContainer(){
 
@@ -31,29 +30,33 @@ function RightContainer(){
         }
     }, [JSONData]);
 
-    const Summarizer = () => {
-        const [title, setTitle] = useState('');
-        const [summary, setSummary] = useState('');
-        const [loading, setLoading] = useState(false);
-        const [error, setError] = useState(null);
+    const [summary, setSummary] = useState('');
+    const [loading, setLoading] = useState(false);
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            setLoading(true);
-            setSummary('');
-            setError(null);
+    const handleSendToBackend = async (publicationTitle) => {
+        setLoading(true);
+        setSummary('');
+        try {
+            const res = await fetch('http://localhost:5000/summarize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: publicationTitle}),
+            });
 
-            const FLASK_API_URL = 'https://localhost:5000/summarize'
-
-            try {
-            const response = await axios.post(FLASK_API_URL, {
-                title: openPublicationId
-            })
-            } catch (err) {
-                console.log('API Error:', err);
-            } finally {
-                setLoading(false);
+            if (!res.ok){
+                throw new Error(`HTTP Error! Status: ${res.status}`);
             }
+
+            const response = await res.json();
+            setSummary(response.summary)
+        }
+        catch (error) {
+            setSummary('Error: Could not connect to backend');
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -63,9 +66,11 @@ function RightContainer(){
 
     const handleOpenPopup = (id) => {
         setOpenPublicationId(id);
+        handleSendToBackend(id);
     };
     const handleClosePopup = () => {
         setOpenPublicationId(null);
+        setSummary('');
     };
 
     const leftArrowClick = () => {
@@ -91,8 +96,12 @@ function RightContainer(){
                         {publication.Title}
                     </button>
                     {publication.Title === openPublicationId && (
-                        <Summary isOpen={true} onClose={handleClosePopup} publicationData={publication}>
-                            
+                        <Summary 
+                        isOpen={true} 
+                        onClose={handleClosePopup} 
+                        publicationData={publication}
+                        summaryText={summary}
+                        isLoading={loading}>
                         </Summary>
                     )}
                 </div>
