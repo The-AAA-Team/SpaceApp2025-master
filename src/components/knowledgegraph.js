@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import cytoscape from 'cytoscape';
 import './knowledgegraph.css';
+import fcose from 'cytoscape-fcose';
+cytoscape.use(fcose);
 
 function KnowledgeGraph() {
   const cyRef = useRef(null);
@@ -188,22 +190,14 @@ function KnowledgeGraph() {
         }
       ],
       layout: {
-        name: 'cose',
+        name: 'fcose',
+        quality: 'default',
+        randomize: true,
+        nodeRepulsion: 4500,
         idealEdgeLength: 100,
-        nodeOverlap: 20,
-        refresh: 20,
-        fit: true,
-        padding: 30,
-        randomize: false,
-        componentSpacing: 100,
-        nodeRepulsion: 400000,
-        edgeElasticity: 100,
-        nestingFactor: 5,
-        gravity: 80,
-        numIter: 1000,
-        initialTemp: 200,
-        coolingFactor: 0.95,
-        minTemp: 1.0
+        edgeElasticity: 0.4,
+        gravity: 0.25,
+        animate: false
       },
       minZoom: 0.3,
       maxZoom: 3

@@ -64,7 +64,7 @@
   }
   
   .legend-color.publication {
-    background-color: #4CAF50;
+    background-color: #d5872f;
   }
   
   .legend-color.year {
@@ -73,7 +73,7 @@
   }
   
   .legend-color.keyword {
-    background-color: #FF9800;
+    background-color: #3e9b46;
   }
   
   /* Graph controls */
@@ -89,7 +89,7 @@
   .graph-controls button {
     background-color: rgba(23, 23, 56, 0.9);
     color: white;
-    border: 1px solid #4CAF50;
+    border: 1px solid #ace265;
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -98,6 +98,6 @@
   }
   
   .graph-controls button:hover {
-    background-color: #4CAF50;
+    background-color: #ace265;
     transform: scale(1.05);
   }
