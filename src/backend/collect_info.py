@@ -52,7 +52,7 @@ def nih_scrape(url):
 # save_results(nih_scrape("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4136787"))
 
 urls = read_urls_from_csv(CSV_URL)
-urls = urls[:50]
+urls = urls[:49]
 
 result = []
 for url in urls:
