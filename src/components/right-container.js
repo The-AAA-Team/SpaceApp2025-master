@@ -1,5 +1,5 @@
 import './right-container.css'
-import publicationsData from './data/publications.json'
+import publicationsData from './data/nih_data.json'
 import React, { useState, useEffect } from 'react'
 import Summary from './summary.js'
 import { Context } from './context'
@@ -16,13 +16,24 @@ function RightContainer(){
         if (!JSONData) {
             return;
         }
-        if (JSONData.keyword.length === 0){
+        if (JSONData.keyword.length === 0 && JSONData.author.length === 0){
             setData(publicationsData); //useless for 
         }
         else{
-            const filteredList = publicationsData.filter((publication) => {
-                return publication.Title.toLowerCase().includes(JSONData.keyword.toLowerCase());
-            });
+            let filteredList = publicationsData;
+            if (JSONData.keyword.length !== 0){
+                filteredList = filteredList.filter((publication) => {
+                    return publication.title.toLowerCase().includes(JSONData.keyword.toLowerCase());
+                });
+            }
+            if (JSONData.author.length !== 0){
+                filteredList = filteredList.filter((publication) => {
+                    return publication.authors.toLowerCase().includes(JSONData.author.toLowerCase());
+                })
+            }
+            if (JSONData.yearRange.length !== 0){
+                
+            }
             setData(filteredList);
             console.log(filteredList);
             setStartIndex(0);
@@ -87,13 +98,13 @@ function RightContainer(){
         <div class="right-container">
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.max(Math.ceil(data.length/10),1)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
             {slicedData.map((publication,x) => (
                 <div class="right-rows" key={publication.Title}>
                     <button class="articles" key={x} onClick={() => handleOpenPopup(publication.Title)}>
-                        {publication.Title}
+                        {publication.title}
                     </button>
                     {publication.Title === openPublicationId && (
                         <Summary 
@@ -108,7 +119,7 @@ function RightContainer(){
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.max(Math.ceil(data.length/10),1)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>

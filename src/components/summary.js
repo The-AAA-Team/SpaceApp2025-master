@@ -1,5 +1,4 @@
 import './summary.css'
-import PublicationSummary from './data/publicationsummary.json'
 
 const Summary = ({isOpen, onClose, publicationData, summaryText}) => {
 
