@@ -1,7 +1,7 @@
 import json
 import os
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "data.json")
+DATA_PATH = os.path.join(os.path.dirname(__file__), "test_data.json")
 
 def save_results(results):
     """Save list of results (dicts) to JSON file."""

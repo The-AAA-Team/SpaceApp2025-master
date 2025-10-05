@@ -1,8 +1,9 @@
 import './right-container.css'
 import publicationsData from './data/publications.json'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import Summary from './summary.js'
 import { Context } from './context'
+import axios from 'axios'
 
 function RightContainer(){
 
@@ -29,6 +30,32 @@ function RightContainer(){
             setEndIndex(Math.min(filteredList.length, 10));
         }
     }, [JSONData]);
+
+    const Summarizer = () => {
+        const [title, setTitle] = useState('');
+        const [summary, setSummary] = useState('');
+        const [loading, setLoading] = useState(false);
+        const [error, setError] = useState(null);
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            setSummary('');
+            setError(null);
+
+            const FLASK_API_URL = 'https://localhost:5000/summarize'
+
+            try {
+            const response = await axios.post(FLASK_API_URL, {
+                title: openPublicationId
+            })
+            } catch (err) {
+                console.log('API Error:', err);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
 
     const slicedData = data.slice(startIndex, endIndex);
 
@@ -65,14 +92,14 @@ function RightContainer(){
                     </button>
                     {publication.Title === openPublicationId && (
                         <Summary isOpen={true} onClose={handleClosePopup} publicationData={publication}>
-
+                            
                         </Summary>
                     )}
                 </div>
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)+1}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>
