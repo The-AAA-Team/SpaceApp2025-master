@@ -18,6 +18,30 @@ def extract_sections(summary: str):
 
     return sections or None
 
+def extract_keywords(summary: str):
+    # Extracts keywords for the purpose of adding it to cytoscape.js knowledge graph
+    keywords = {}
+    pattern = r"\*\*\s*Keywords\s*\*\*[:：]?\s*(.*?)(?=\n\*{2,}|$)"
+    match = re.search(pattern, summary, flags=re.DOTALL | re.IGNORECASE)
+
+    if match:
+        keyword_text = match.group(1)
+        # Split on commas, then extract "keyword (type)"
+        for item in keyword_text.split(','):
+            item = item.strip()
+            if not item:
+                continue
+            keyword_match = re.match(r"(.+?)\s*\((.+?)\)", item)
+            if keyword_match:
+                keyword, ktype = keyword_match.groups()
+                keywords[keyword.strip()] = ktype.strip()
+            else:
+                # If no type, just add as 'unknown'
+                keywords[item] = "unknown"
+
+    return keywords or None
+
+
 
 def infer_title(summary: str):
     """Heuristic: take first line or first sentence as title."""
@@ -64,6 +88,7 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
         author = extract_author(summary)
         title = infer_title(summary)
         sections = extract_sections(summary)
+        keywords = extract_keywords(summary)
 
         enriched.append({
             "id": i + 1,
@@ -71,7 +96,8 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
             "author": author,
             "title": title,
             "summary": summary,
-            "sections": sections
+            "sections": sections,
+            "keywords": keywords
         })
 
     out_path = Path(output_file)

@@ -27,7 +27,8 @@ def summarize_text(text: str):
 
     {{
       "title": "Concise, descriptive title",
-      "author": "Main author name if identifiable, else Unknown",
+      "year": "Year the article was posted if identifiable, else Unknown",
+      "authors": "All main author names if identifiable, else Unknown",
       "summary": "Overall summary in 5–7 concise bullet points",
       "sections": {{
         "Research Purpose": "...",
@@ -36,6 +37,7 @@ def summarize_text(text: str):
         "Conclusions": "...",
         "Implications & Future Work": "..."
       }}
+      "keywords": "...", "...", "etc."
     }}
 
     Keep the output machine-readable JSON only — no commentary or extra text.
