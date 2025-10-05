@@ -4,26 +4,28 @@
     border-radius: 1rem;
     margin: 5px;
     height: 100%;
+    background-color: #171738;
   }
 
 .right-rows {
-    margin: 10px;
+    margin: 15px;
     padding: 20px;
     flex: 1;
     color: #DFF3E4;
-    background-color: #4f2f96;
+    background-color: #7180B9;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     text-align: left;
     font-size: 18px;
+    font-weight: bold;
 }
 
 a:hover{
-    color: #02eeff;
+    color: #DFF3E4;
 }
 
-a {    color: #DFF3E4;
+a {    color: #231f2b;
 }
 
 a:link{

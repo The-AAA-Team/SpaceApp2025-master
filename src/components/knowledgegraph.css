@@ -1,12 +1,12 @@
 .knowledge-graph-main {
-    background-color: black;
+    background-color: #171738;
     width: 100%;
-    height: 50%;
-    bottom: 0;
+    height: 60vh;
     display: flex;
-    position: absolute;
+    z-index: -1;
 }
 
 .knowledge-graph-content {
     flex: 1;
+    background-color: rgb(57, 44, 141);
 }
