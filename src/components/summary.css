@@ -1,0 +1,49 @@
+
+.sumarry-main {
+    background-color: #7180B9;
+    color: #DFF3E4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    height: 90vh;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    display: flex;
+    z-index: 9999;
+    border-radius: 1rem;
+}
+
+.summary-content {
+    padding: 50px;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+.summary-header {
+    font-size: 80px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.summary-paragraph {
+    font-size: 30px;
+
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* border: none; */
+    color: #DFF3E4;
+    font: inherit;
+    background: none;
+    cursor: pointer;
+    font-size: 3rem;
+    background-color: #2E1760;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #171738;
+}
