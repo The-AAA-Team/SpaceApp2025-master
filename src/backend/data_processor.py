@@ -2,6 +2,7 @@
 import json
 import re
 from pathlib import Path
+import os
 
 
 def extract_sections(summary: str):
@@ -34,10 +35,18 @@ def extract_author(summary: str):
 
 
 def enrich_data(input_file="data.json", output_file="processed_data.json"):
-    """Loads saved summaries, extracts title, author, and structured sections."""
+    """Loads saved summaries, extracts title, author, and structured sections.
+
+    By default, resolves files relative to this backend module so it reads/writes
+    the same files used by other backend modules.
+    """
+    base_dir = Path(os.path.dirname(__file__))
     path = Path(input_file)
+    if not path.is_absolute():
+        path = base_dir.joinpath(input_file)
+
     if not path.exists():
-        print(f"[ERROR] Could not find {input_file}")
+        print(f"[ERROR] Could not find {path}")
         return
 
     with open(input_file, "r") as f:
@@ -65,10 +74,14 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
             "sections": sections
         })
 
-    with open(output_file, "w") as f:
+    out_path = Path(output_file)
+    if not out_path.is_absolute():
+        out_path = base_dir.joinpath(output_file)
+
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(enriched, f, indent=2)
 
-    print(f"[INFO] ✅ Enriched {len(enriched)} summaries → {output_file}")
+    print(f"[INFO] ✅ Enriched {len(enriched)} summaries → {out_path}")
 
 
 if __name__ == "__main__":

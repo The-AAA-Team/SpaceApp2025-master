@@ -175,5 +175,68 @@
       "Implications & Future Work": "The findings have dual applications for space medicine and terrestrial health. Continued research is crucial for developing countermeasures to protect astronauts on long-duration missions. On Earth, this research can accelerate the development of regenerative therapies (especially for cardiac diseases), create more accurate cancer models for drug testing, and provide new insights for immunological interventions."
     },
     "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11988870/"
+  },
+  {
+    "title": "Overview of Mouse Biomedical Research on the Bion-M 1 Biosatellite Mission",
+    "author": "A. Andrievsky",
+    "summary": [
+      "Russia resumed its space biomedical research with the successful 30-day Bion-M 1 biosatellite mission after a 16-year hiatus.",
+      "The mission used group-housed male C57BL/6 mice as the principal species to study adaptation to long-term microgravity.",
+      "Research combined in-flight measurements like continuous blood pressure with extensive post-flight in vivo and in vitro analyses of multiple physiological systems.",
+      "A key component was a pre-flight training program to co-adapt the aggressive male mice for group housing and adapt them to a paste food diet.",
+      "Experimental controls included a ground-based group replicating spacecraft conditions and vivarium groups to account for housing and seasonal effects.",
+      "The mission was successful, with mice returning in good condition but showing pronounced disadaptation to Earth's gravity, validating the experimental approach.",
+      "The study demonstrated that with proper training, male mice can be successfully employed in long-duration space biomedical research."
+    ],
+    "sections": {
+      "Research Purpose": "To elucidate the cellular and molecular mechanisms underlying the adaptation of key physiological systems\u2014including muscle, bone, cardiovascular, sensorimotor, and nervous systems\u2014to long-term (30-day) microgravity exposure and to study the dynamics of re-adaptation to Earth's gravity post-flight.",
+      "Methods Used": "Male C57BL/6N mice were flown for 30 days aboard the Bion-M 1 biosatellite. A comprehensive pre-flight training program was implemented to adapt the mice to group housing and a paste food diet. The experiment included a spaceflight (SF) group, a ground control (GC) group in a replica habitat, and corresponding vivarium control groups. Data collection involved in-flight in vivo measurements (video, continuous arterial pressure), post-flight in vivo testing (behavior, strength, telemetry), and extensive post-flight in vitro analyses (morphological, biochemical, molecular) of numerous harvested organs and tissues.",
+      "Key Findings": "The 30-day orbital mission with group-housed male mice was successfully completed. Upon return, the mice were in good condition for subsequent biomedical studies. The animals displayed clear signs of pronounced disadaptation to Earth's gravity. The pre-flight training and selection program proved effective for ensuring the welfare of the mice and the success of the mission, demonstrating the viability of using group-housed male mice in long-duration spaceflight.",
+      "Conclusions": "The training program and experimental design for the Bion-M 1 mission were effective, demonstrating that group-housed male mice can be successfully utilized for complex, long-duration space biomedical research. The mission successfully gathered a wide range of data on both adaptation to microgravity and re-adaptation to Earth's gravity, providing a robust foundation for detailed future analyses.",
+      "Implications & Future Work": "This mission successfully validates the male mouse as a model organism for long-duration spaceflight studies, enabling research that can leverage genetic engineering and larger sample sizes. The comprehensive dataset collected will fuel future work analyzing the specific cellular and molecular mechanisms of spaceflight adaptation. The success of Bion-M 1 re-establishes a key platform for Russian space bioscience and informs the design of future experiments."
+    },
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4136787/"
+  },
+  {
+    "title": "Mechanisms of Microgravity-Induced Bone Loss in Mice: Osteocytic Osteolysis and Osteoblast Cell Cycle Arrest",
+    "author": "E. Almeida",
+    "summary": [
+      "Female mice flown for 15 days on the STS-131 space shuttle mission were studied to understand the mechanisms of bone loss in microgravity.",
+      "Significant bone loss was confirmed in the pelvis, evidenced by decreased bone volume fraction and thickness.",
+      "In addition to a 170% increase in osteoclast activity, the study provides new evidence for osteocytic osteolysis\u2014the degradation of bone by embedded osteocytes.",
+      "High-resolution nanoCT imaging revealed enlargement of osteocyte lacunae (cavities) and canaliculi (channels) in flight mice.",
+      "Gene expression analysis showed increased levels of matrix-degrading enzymes (MMPs) associated with osteocytes.",
+      "The cell cycle inhibitor CDKN1a/p21 was upregulated in bone-forming cells (osteoblasts), suggesting a halt in bone regeneration.",
+      "These findings indicate that bone loss in space is a complex process involving not just increased resorption but also osteocytic degradation and impaired formation."
+    ],
+    "sections": {
+      "Research Purpose": "To investigate the cellular and molecular mechanisms underlying bone degeneration in space beyond the well-known osteoclast-mediated resorption. The study hypothesized that two other processes contribute to bone loss: osteocytic osteolysis (degradation of bone matrix by osteocytes) and cell cycle arrest in osteogenic cells, which would impair bone formation and regeneration.",
+      "Methods Used": "16-week-old female C57BL/6J mice were exposed to microgravity for 15 days aboard the STS-131 space shuttle mission, with a synchronous ground control group. Post-flight analyses included: micro-computed tomography (\u00b5CT) to assess pelvic bone structure and volume; high-resolution nano-computed tomography (nanoCT) to analyze osteocyte lacunae and canaliculi at the nanoscale; TRAP staining to quantify osteoclast activity; and RT-qPCR to measure the expression of key genes related to matrix degradation (MMPs), cell cycle arrest (CDKN1a/p21), and apoptosis (Trp53).",
+      "Key Findings": "Compared to ground controls, space-flown mice exhibited: 1) A significant decrease in pelvic bone volume fraction (6.29%) and thickness (11.91%). 2) A 170% increase in TRAP-positive osteoclast surfaces, confirming heightened bone resorption. 3) Evidence of osteocytic osteolysis, including a 17% increase in lacunar area, a 14% increase in perimeter, and a 6% increase in canalicular diameter. 4) Significant up-regulation of matrix metalloproteinases (MMP1, MMP3, MMP10) in bone tissue. 5) A 3.31-fold increase in the expression of the cell cycle inhibitor CDKN1a/p21, which was localized to osteoblasts. 6) A 1.54-fold down-regulation of the apoptosis inducer Trp53.",
+      "Conclusions": "The bone degeneration observed in mice after short-duration spaceflight is a multi-faceted process. It is not limited to increased osteoclastic bone resorption. This study provides strong new evidence for the contribution of two additional mechanisms: microgravity-induced osteocytic osteolysis and CDKN1a/p21-mediated cell cycle arrest in the osteogenic lineage, which likely inhibits tissue regeneration.",
+      "Implications & Future Work": "These findings identify osteocytes and osteoblast cell cycle regulation as novel targets for developing countermeasures to prevent bone loss during long-duration space missions. The upregulation of CDKN1a/p21 suggests that microgravity may cause broader deficits in tissue regeneration beyond bone. Future work could investigate these mechanisms over longer spaceflight durations to determine if adaptation occurs and explore the specific signaling pathways that trigger osteocytic osteolysis and cell cycle arrest in response to mechanical unloading."
+    },
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3630201/"
+  },
+  {
+    "title": "A Review of the Effects of Microgravity on Human Cellular Processes and Health",
+    "author": "Juan Izquierdo Condoy",
+    "summary": [
+      "Microgravity significantly impairs the human immune system by disrupting T cell activation, cytokine production, and macrophage differentiation, increasing infection susceptibility.",
+      "In oncology, microgravity promotes the formation of 3D multicellular spheroids from cancer cells, creating more realistic models for studying tumor dynamics and treatments.",
+      "The environment enhances tissue regeneration by modulating key signaling pathways, improving stem cell differentiation into hematopoietic and cardiomyocyte lineages.",
+      "At the organ level, microgravity induces negative changes, including accelerated bone loss, lipid dysregulation in the liver, and adverse vascular remodeling.",
+      "Cardiomyocytes cultured in microgravity exhibit advanced structural and functional maturation, presenting opportunities for developing new therapies for cardiac diseases.",
+      "Microgravity's effects are mediated by alterations in critical molecular signaling pathways like RAS-ERK, NF-\u03baB, Hippo, and PI3K-Akt.",
+      "These findings have dual implications: protecting astronaut health during space missions and advancing biomedical innovations on Earth, particularly in regenerative medicine and cancer research."
+    ],
+    "sections": {
+      "Research Purpose": "To review recent advances in understanding the effects of microgravity on biological processes and to explore the implications and applications of these findings for human health, both in space and on Earth.",
+      "Methods Used": "A comprehensive literature review was conducted using PubMed, Scopus, and Embase databases. The search was structured using the PICOT framework to identify studies on various cell types (stem cells, T cells, cancer cells, etc.) under microgravity conditions compared to normal gravity, focusing on outcomes like cell proliferation, tissue regeneration, and immune health.",
+      "Key Findings": "Microgravity impairs immune cell function, notably T cell activation and proliferation. It promotes the formation of 3D multicellular spheroids in cancer cells, mimicking in vivo tumors and altering gene expression related to proliferation. It enhances stem cell differentiation and maturation, especially for cardiomyocytes, which show improved mitochondrial function and structural development. It also causes systemic physiological changes, including bone density loss, altered liver metabolism, and vascular remodeling.",
+      "Conclusions": "Microgravity exerts a profound and multifaceted influence on human biological systems. While it presents significant health challenges for astronauts, such as immune dysfunction and bone loss, it also serves as a unique tool for biomedical research. The environment offers novel insights into disease modeling (e.g., cancer spheroids) and regenerative medicine (e.g., cardiomyocyte maturation), highlighting its dual role as both a stressor and an opportunity for innovation.",
+      "Implications & Future Work": "The findings are critical for developing countermeasures to protect astronaut health on long-duration space missions. They also hold transformative potential for terrestrial medicine, including advancements in regenerative therapies for cardiac disease, new strategies for oncology research, and novel immunological interventions. Continued research is essential to fully leverage these opportunities and mitigate the risks associated with space travel."
+    },
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11988870/"
   }
 ]
