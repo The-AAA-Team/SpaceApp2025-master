@@ -69,10 +69,12 @@ button:hover{
 }
 
 .arrows {
-    background-color: #4f2f96;
+    background-color: #7180B9;
     border-color: white;
     border-radius: 1rem;
     border-style: solid;
-    color: #DFF3E4;
+    border-width: 2px;
+    color: #02eeff;
     padding: 1.5rem;
+    margin-left: 5%;
 }

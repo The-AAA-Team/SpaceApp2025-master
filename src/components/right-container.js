@@ -16,14 +16,11 @@ function RightContainer(){
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
 
-    // function leftArrowClick(){
-    //     setStartIndex(prev => Math.max(0, prev - 10));
-    //     setEndIndex(prev => Math.min(data.length, prev+10));
-    // }
+    let value = 0;
 
     const leftArrowClick = () => {
         setStartIndex(prev => Math.max(0, prev - 10));
-        setEndIndex(prev => Math.max(10, prev-10));   
+        setEndIndex(prev => Math.max(10, prev-10));
     }
 
     const rightArrowClick = () => {
@@ -35,6 +32,7 @@ function RightContainer(){
         <div class="right-container">
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.floor(data.length/10)+1}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
             {slicedData.map((publication,x) => (
@@ -49,6 +47,7 @@ function RightContainer(){
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
+                <div class="arrows">1/68</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>

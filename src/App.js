@@ -11,9 +11,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className = "main container">
-{/* //         <LeftContainer /> */}
-{/* //         <RightContainer /> */}
+        <div className = "main container">
       <Contents />
      </div>
       <Footer />
