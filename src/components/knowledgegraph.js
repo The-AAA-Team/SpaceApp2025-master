@@ -66,7 +66,6 @@ function KnowledgeGraph() {
     }, 100);
 
     // REAL BACKEND FETCH - Uncomment this when your backend is ready
-    /*
     fetch('http://localhost:5000/data')
       .then(response => response.json())
       .then(data => {
@@ -82,7 +81,6 @@ function KnowledgeGraph() {
           setLoading(false);
         }
       });
-    */
 
     // Cleanup
     return () => {
