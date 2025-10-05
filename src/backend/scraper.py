@@ -53,7 +53,6 @@ def scrape_article(url):
         print(f"[ERROR] While scraping {url}: {e}")
         return None
 
-
 def scrape_all_from_csv(csv_url, limit=None):
     """
     Loops through all URLs in the CSV and scrapes each.
@@ -79,3 +78,4 @@ def scrape_all_from_csv(csv_url, limit=None):
 
     print(f"\n[INFO] Finished scraping {len(results)} successful URLs.")
     return results
+
