@@ -1,4 +1,4 @@
-// import './App.css'
+import './App.css'
 
 import Footer from './components/footer.js'
 import Navbar from './components/header.js'
