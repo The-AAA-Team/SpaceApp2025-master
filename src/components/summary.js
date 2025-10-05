@@ -1,8 +1,7 @@
 import './summary.css'
 import PublicationSummary from './data/publicationsummary.json'
-import React, { useState } from 'react'
 
-const Summary = ({isOpen, onClose, publicationData}) => {
+const Summary = ({isOpen, onClose, publicationData, summaryText}) => {
 
   if (!isOpen || !publicationData){
     return null;
@@ -14,15 +13,9 @@ const Summary = ({isOpen, onClose, publicationData}) => {
       </button>
       <div class="summary-content">
         <p class="summary-header">{publicationData.Title}</p>
-        {
-          PublicationSummary.map((summary) => (
-            <p class="summary-paragraph">
-              {publicationData.Title.toLowerCase() === summary.title.toLowerCase && (
-                <p>summary.summary</p>
-              )}
-            </p>
-          ))
-        }
+          <p class="summary-paragraph">
+            {summaryText.summary}
+          </p>
       </div>
     </div>
   );

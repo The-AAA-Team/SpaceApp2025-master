@@ -1,9 +1,23 @@
+import google.generativeai as genai
 from flask import Flask, request, jsonify
-from google import genai
+from flask_cors import CORS
+from scraper import scrape_article
 import json
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("[ERROR] Missing GOOGLE_API_KEY in environment or .env file.")
+genai.configure(api_key=api_key)
 
 app = Flask(__name__)
+CORS(app)
+
 file_path = './publications.json'
 with open(file_path, 'r') as f:
     data = json.load(f)
@@ -14,19 +28,46 @@ def members():
 
 @app.route("/summarize", methods=["POST"])
 def summary():
-    data = request.json()
-    title = data.get("title")
+    data = request.get_json()
 
-    prompt = f"Summarize the following text:\n\n"
+    if not data or 'title' not in data:
+        return jsonify({'error': 'No title provided'}), 400
+    article_title = data['title']
+    print(f"Recieved article title: {article_title}")
 
-    response = client.model.generate_content(
-        model='gemini-2.5-flash',
-        contents=prompt
-    )
+    CSV_URL = "https://raw.githubusercontent.com/jgalazka/SB_publications/main/SB_publication_PMC.csv"
+    df = pd.read_csv(CSV_URL)
+    title_col = next((col for col in df.columns if 'title' in col.lower()), None)
+    url_col = next((col for col in df.columns if 'link' in col.lower()), None)
+
+    if not title_col or not url_col:
+        missing_cols = []
+        if not title_col: missing_cols.append("'title'")
+        if not url_col: missing_cols.append("'url'")
+        error_msg = f"Required columns ({', '.join(missing_cols)}) not found in the CSV headers."
+        print(f"ERROR: {error_msg}")
+        return jsonify({'error': error_msg}), 500
+
+    match = df[df[title_col] == article_title]
+
+    if match.empty:
+        return jsonify({'error': f"Article '{article_title}' URL not found in CSV."}), 404
+            
+    url = match[url_col].iloc[0]
+    print(f"Found URL: {url}")
+    
+    content = scrape_article(url)
+
+    prompt = f"Summarize the following text:\n\nc{content}"
+
+    model = genai.GenerativeModel("gemini-2.5-pro")
+    response = model.generate_content(prompt)
 
     summary = response.text
 
-    return jsonify({"summary", summary})
+    print(summary)
+
+    return jsonify({"summary": summary})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
