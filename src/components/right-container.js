@@ -1,22 +1,45 @@
 import './right-container.css'
 import publicationsData from './data/publications.json'
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import Summary from './summary.js'
+import { Context } from './context'
 
 function RightContainer(){
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const [data, setData] = useState(publicationsData);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(10);
 
+    const { JSONData } = Context();
+
+    useEffect(() => {
+        if (!JSONData) {
+            return;
+        }
+        if (JSONData.keyword.length === 0){
+            setData(publicationsData); //useless for 
+        }
+        else{
+            const filteredList = publicationsData.filter((publication) => {
+                return publication.Title.toLowerCase().includes(JSONData.keyword.toLowerCase());
+            });
+            setData(filteredList);
+            console.log(filteredList);
+            setStartIndex(0);
+            setEndIndex(Math.min(filteredList.length, 10));
+        }
+    }, [JSONData]);
+
     const slicedData = data.slice(startIndex, endIndex);
 
-    const handleOpenPopup = () => setIsPopupOpen(true);
-    const handleClosePopup = () => setIsPopupOpen(false);
+    const [openPublicationId, setOpenPublicationId] = useState(null);    
 
-    let value = 0;
+    const handleOpenPopup = (id) => {
+        setOpenPublicationId(id);
+    };
+    const handleClosePopup = () => {
+        setOpenPublicationId(null);
+    };
 
     const leftArrowClick = () => {
         setStartIndex(prev => Math.max(0, prev - 10));
@@ -32,22 +55,24 @@ function RightContainer(){
         <div class="right-container">
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.floor(data.length/10)+1}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
             {slicedData.map((publication,x) => (
-                <div class="right-rows" key={x}>
-                    <button class="articles" key={x} onClick={handleOpenPopup}>
+                <div class="right-rows" key={publication.Title}>
+                    <button class="articles" key={x} onClick={() => handleOpenPopup(publication.Title)}>
                         {publication.Title}
                     </button>
-                    <Summary isOpen={isPopupOpen} onClose={handleClosePopup}>
+                    {publication.Title === openPublicationId && (
+                        <Summary isOpen={true} onClose={handleClosePopup} publicationData={publication}>
 
-                    </Summary>
+                        </Summary>
+                    )}
                 </div>
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">1/68</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)+1}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>

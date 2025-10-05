@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import './left-container.css';
 import KnowledgeGraph from './knowledgegraph.js'
+import { Context } from './context';
 
 function LeftContainer() {
+  const { setJSONData } = Context();
+
   const [filters, setFilters] = useState({
     keyword: "",
     author: "",
@@ -17,6 +20,7 @@ function LeftContainer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setJSONData(filters);
     console.log("Filters applied:", filters);
   };
 

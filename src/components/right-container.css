@@ -30,6 +30,7 @@
 .articles {
     background: none;
     color: inherit;
+    cursor: pointer;
     border: none;
     font: inherit;
     text-align: left;
