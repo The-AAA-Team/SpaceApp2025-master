@@ -67,6 +67,7 @@ function RightContainer(){
                     });
                 }
             }
+            
             setData(filteredList);
             console.log(filteredList);
             setStartIndex(0);
@@ -135,11 +136,11 @@ function RightContainer(){
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
             {slicedData.map((publication,x) => (
-                <div class="right-rows" key={publication.Title}>
-                    <button class="articles" key={x} onClick={() => handleOpenPopup(publication.Title)}>
+                <div class="right-rows" key={publication.title}>
+                    <button class="articles" key={x} onClick={() => handleOpenPopup(publication.title)}>
                         {publication.title}
                     </button>
-                    {publication.Title === openPublicationId && (
+                    {publication.title === openPublicationId && (
                         <Summary 
                         isOpen={true} 
                         onClose={handleClosePopup} 

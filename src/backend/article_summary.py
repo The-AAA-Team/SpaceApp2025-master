@@ -43,13 +43,24 @@ def summary():
     if not title_col or not url_col:
         missing_cols = []
         if not title_col: missing_cols.append("'title'")
-        if not url_col: missing_cols.append("'url'")
+        if not url_col: missing_cols.append("'link'")
         error_msg = f"Required columns ({', '.join(missing_cols)}) not found in the CSV headers."
         print(f"ERROR: {error_msg}")
         return jsonify({'error': error_msg}), 500
     print("got title")
+    print(len(title_col))
+    for i in range(0,5):
+        print(title_col[i])
+    
+    print(url_col)
+
+    for title in title_col:
+        if title == article_title:
+            print('worked')
+            print(title)
 
     match = df[df[title_col] == article_title]
+    print(match)
 
     if match.empty:
         return jsonify({'error': f"Article '{article_title}' URL not found in CSV."}), 404
