@@ -1,18 +1,18 @@
 import './summary.css'
-import React from 'react'
+import './data/publicationsummary.json'
 
-const Summary = ({isOpen, onClose, children}) => {
-  if (!isOpen){
+const Summary = ({isOpen, onClose, publicationData}) => {
+
+  if (!isOpen || !publicationData){
     return null;
   }
   return (
-    <div class="sumarry-main" onClick={onClose}>
-      {children}
-      <button class="close-button" onClick={(e) => e.stopPropagation()}>
+    <div class="sumarry-main">
+      <button class="close-button" onClick={onClose}>
           X
       </button>
-      <div class="summary-content" onClick={onClose}>
-        <p class="summary-header">Heading</p>
+      <div class="summary-content">
+        <p class="summary-header">{publicationData.Title}</p>
         <p class="summary-paragraph">Content</p>
       </div>
     </div>
