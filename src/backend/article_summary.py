@@ -47,20 +47,23 @@ def summary():
         error_msg = f"Required columns ({', '.join(missing_cols)}) not found in the CSV headers."
         print(f"ERROR: {error_msg}")
         return jsonify({'error': error_msg}), 500
+    print("got title")
 
     match = df[df[title_col] == article_title]
 
     if match.empty:
         return jsonify({'error': f"Article '{article_title}' URL not found in CSV."}), 404
+    print("got match")
             
     url = match[url_col].iloc[0]
     print(f"Found URL: {url}")
     
     content = scrape_article(url)
 
+    print("sending prompt")
     prompt = f"Summarize the following text:\n\nc{content}"
 
-    model = genai.GenerativeModel("gemini-2.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash-lite")
     response = model.generate_content(prompt)
 
     summary = response.text
