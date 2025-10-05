@@ -48,8 +48,16 @@ def summary():
         print(f"ERROR: {error_msg}")
         return jsonify({'error': error_msg}), 500
     print("got title")
-    print(title_col)
+    print(len(title_col))
+    for i in range(0,5):
+        print(title_col[i])
+    
     print(url_col)
+
+    for title in title_col:
+        if title == article_title:
+            print('worked')
+            print(title)
 
     match = df[df[title_col] == article_title]
     print(match)

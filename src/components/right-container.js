@@ -140,7 +140,7 @@ function RightContainer(){
                     <button class="articles" key={x} onClick={() => handleOpenPopup(publication.title)}>
                         {publication.title}
                     </button>
-                    {publication.Title === openPublicationId && (
+                    {publication.title === openPublicationId && (
                         <Summary 
                         isOpen={true} 
                         onClose={handleClosePopup} 
