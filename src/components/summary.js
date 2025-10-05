@@ -1,5 +1,6 @@
 import './summary.css'
 import React from 'react'
+import './data/publicationsummary.json'
 
 const Summary = ({isOpen, onClose, children}) => {
   if (!isOpen){
