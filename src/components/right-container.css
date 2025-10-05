@@ -70,12 +70,13 @@ button:hover{
 
 .arrows {
     background-color: #7180B9;
-    border-color: white;
-    border-radius: 1rem;
     border-style: solid;
-    border-width: 2px;
-    color: #171738;
+    border-width: 0px;
     font-weight: bold;
-    padding: 1.5rem;
+    padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+    border-radius: 5px;
     margin-left: 5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    box-shadow: 1.3px 1.3px 3px rgba(113, 128, 185, 0.8);
 }
