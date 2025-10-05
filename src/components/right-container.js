@@ -16,7 +16,7 @@ function RightContainer(){
         if (!JSONData) {
             return;
         }
-        if (JSONData.keyword.length === 0 && JSONData.author.length === 0){
+        if (JSONData.keyword.length === 0 && JSONData.author.length === 0 && JSONData.yearRange === ""){
             setData(publicationsData); //useless for 
         }
         else{
@@ -29,10 +29,43 @@ function RightContainer(){
             if (JSONData.author.length !== 0){
                 filteredList = filteredList.filter((publication) => {
                     return publication.authors.toLowerCase().includes(JSONData.author.toLowerCase());
-                })
+                });
             }
-            if (JSONData.yearRange.length !== 0){
-                
+            if (JSONData.yearRange !== ""){
+                if (JSONData.yearRange === "2020-2025"){
+                    filteredList = filteredList.filter((publication) => {
+                        const value = parseInt(publication.date)
+                        if (!isNaN(value)){
+                            if (2020 <= value && value <= 2025){
+                                return value;
+                            }
+                        }
+                        return false;
+                    });
+                }
+                else if (JSONData.yearRange === "2010-2019"){
+                    console.log("2010-2019");
+                    filteredList = filteredList.filter((publication) => {
+                        const value = parseInt(publication.date)
+                        if (!isNaN(value)){
+                            if (2010 <= value && value <= 2019){
+                                return value;
+                            }
+                        }
+                        return false;
+                    });
+                }
+                else if (JSONData.yearRange === "2000-2009"){
+                    filteredList = filteredList.filter((publication) => {
+                        const value = parseInt(publication.date)
+                        if (!isNaN(value)){
+                            if (2000 <= value && value <= 2009){
+                                return value;
+                            }
+                        }
+                        return false;
+                    });
+                }
             }
             setData(filteredList);
             console.log(filteredList);
