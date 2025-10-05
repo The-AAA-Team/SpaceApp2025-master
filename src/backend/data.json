@@ -238,5 +238,26 @@
       "Implications & Future Work": "The findings are critical for developing countermeasures to protect astronaut health on long-duration space missions. They also hold transformative potential for terrestrial medicine, including advancements in regenerative therapies for cardiac disease, new strategies for oncology research, and novel immunological interventions. Continued research is essential to fully leverage these opportunities and mitigate the risks associated with space travel."
     },
     "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11988870/"
+  },
+  {
+    "title": "Experimental Design and Mouse Training for the Bion-M 1 Biosatellite Mission",
+    "author": "A. Andrievsky",
+    "summary": [
+      "Russia's Bion-M 1 mission conducted a 30-day spaceflight to study the physiological effects of microgravity on male C57BL/6 mice.",
+      "The research aimed to uncover cellular and molecular mechanisms of adaptation in systems like the musculoskeletal, cardiovascular, and nervous systems.",
+      "The study integrated in-flight and post-flight 'in vivo' measurements (e.g., blood pressure, behavior) with comprehensive post-flight 'in vitro' tissue analyses.",
+      "A specialized pre-flight training program was successfully implemented to co-adapt normally aggressive male mice for group housing and a paste food diet.",
+      "The experimental design included spaceflight, ground control, and vivarium control groups to isolate the effects of microgravity.",
+      "Upon return, mice were in good health but showed clear signs of disadaptation to Earth's gravity, validating the model for space biology studies.",
+      "The mission's success demonstrated that male mice are a viable model for long-duration space biomedical research."
+    ],
+    "sections": {
+      "Research Purpose": "To investigate the cellular and molecular mechanisms underlying the adaptation of key physiological systems to long-term microgravity and subsequent re-adaptation to Earth's gravity, using a male mouse model aboard the 30-day Bion-M 1 biosatellite mission.",
+      "Methods Used": "Male C57BL/6N mice were divided into a spaceflight group, a ground control group replicating flight conditions, and corresponding vivarium controls. A pre-flight training program adapted the mice to group housing and a paste food diet. The study combined 'in vivo' methods, including in-flight telemetry for continuous blood pressure monitoring and post-flight behavioral tests, with extensive post-flight 'in vitro' analyses of various tissues using morphological, biochemical, and molecular-biology techniques.",
+      "Key Findings": "The 30-day automated spaceflight mission was completed successfully, with the mice returning in good condition for subsequent studies. The flight group displayed pronounced signs of disadaptation to Earth's gravity upon return. The pre-flight training program was effective in ensuring animal welfare and co-adaptation of group-housed male mice, which is typically a challenge.",
+      "Conclusions": "The training and selection program was effective, and male mice can be successfully employed as a model organism in long-duration space biomedical research. The Bion-M 1 mission successfully provided a platform for comprehensive study of microgravity's effects and re-adaptation to normal gravity.",
+      "Implications & Future Work": "The success of this mission validates the use of the mouse, a powerful genetic model, for future long-duration spaceflight research, enabling deeper molecular investigations into adaptation mechanisms. The comprehensive dataset generated will inform the development of countermeasures for human spaceflight and guide the design of future experiments following post-flight recovery dynamics."
+    },
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4136787/"
   }
 ]

@@ -1,0 +1,16 @@
+.dashboard { max-width: 980px; margin: 24px auto; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+.dashboard-header { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.controls { display:flex; gap:8px; align-items:center; }
+.controls input { flex:1; padding:8px 10px; border-radius:6px; border:1px solid #ddd; }
+.controls select { padding:8px 10px; border-radius:6px; border:1px solid #ddd; }
+.stats { color:#666; font-size:0.9rem; }
+.pub-list { list-style:none; padding:0; margin:12px 0; display:grid; gap:12px; }
+.pub { border:1px solid #eee; padding:12px; border-radius:8px; background:#fff; }
+.pub-title { margin:0 0 6px 0; font-size:1.1rem; }
+.pub-summary { color:#333; margin:8px 0; }
+.pub-author { color:#555; font-size:0.9rem; }
+.pub-link { display:inline-block; margin-top:8px; color:#0366d6; }
+.info { color:#666; }
+.error { color:#c00; }
+.sections { margin-top:8px; }
+.section { margin-bottom:8px; }
