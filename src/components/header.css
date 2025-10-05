@@ -2,14 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
-    padding: 1rem 2rem;
+    background-color: #04041e;
+    padding: 2rem 2rem;
     color: white;
     margin: 0;
     font-size: 5rem;
     letter-spacing: 2px;
-    max-height: 150px;
-    min-height: 80px;
+    height: 100px;
   }
 
   @font-face {

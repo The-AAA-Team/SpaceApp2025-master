@@ -18,12 +18,11 @@ function LeftContainer() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Filters applied:", filters);
-    // Later: pass filters to parent or API
   };
 
   return (
     <div className="left-container">
-      <nav className="search">
+      <div className="search-section">
         <form className="search-form" onSubmit={handleSubmit}>
           {/* Keyword search */}
           <div className="filter-group">
@@ -51,35 +50,36 @@ function LeftContainer() {
             />
           </div>
 
-          {/* Year range dropdown */}
-          <div className="filter-group">
-            <label htmlFor="yearRange">Year Range</label>
-            <select
-              id="yearRange"
-              name="yearRange"
-              value={filters.yearRange}
-              onChange={handleChange}
-            >
-              <option value="">All Years</option>
-              <option value="2020-2025">2020–2025</option>
-              <option value="2010-2019">2010–2019</option>
-              <option value="2000-2009">2000–2009</option>
-              <option value="Before 2000">Before 2000</option>
-            </select>
-          </div>
+          {/* Year range and Sort order side by side */}
+          <div className="filter-row">
+            <div className="filter-group">
+              <label htmlFor="yearRange">Year Range</label>
+              <select
+                id="yearRange"
+                name="yearRange"
+                value={filters.yearRange}
+                onChange={handleChange}
+              >
+                <option value="">All Years</option>
+                <option value="2020-2025">2020–2025</option>
+                <option value="2010-2019">2010–2019</option>
+                <option value="2000-2009">2000–2009</option>
+                <option value="before-2000">Before 2000</option>
+              </select>
+            </div>
 
-          {/* Sort order dropdown */}
-          <div className="filter-group">
-            <label htmlFor="sortOrder">Sort By</label>
-            <select
-              id="sortOrder"
-              name="sortOrder"
-              value={filters.sortOrder}
-              onChange={handleChange}
-            >
-              <option value="desc">Years Descending</option>
-              <option value="asc">Years Ascending</option>
-            </select>
+            <div className="filter-group">
+              <label htmlFor="sortOrder">Sort By</label>
+              <select
+                id="sortOrder"
+                name="sortOrder"
+                value={filters.sortOrder}
+                onChange={handleChange}
+              >
+                <option value="desc">Years Descending</option>
+                <option value="asc">Years Ascending</option>
+              </select>
+            </div>
           </div>
 
           {/* Search button */}
@@ -87,10 +87,9 @@ function LeftContainer() {
             Search
           </button>
         </form>
-      </nav>
-        <div class="knowledge-contents">
-            <KnowledgeGraph />  
-        </div>
+      </div>
+
+      <KnowledgeGraph />
     </div>
   );
 }
