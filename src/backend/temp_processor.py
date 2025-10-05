@@ -1,4 +1,4 @@
-# data_processor.py
+"""Helper functions for extracting structured data from article summaries."""
 import json
 import re
 from pathlib import Path
@@ -12,8 +12,7 @@ def extract_sections(summary: str):
         return None
 
     sections = {}
-    # Match sections between two asterisks followed by optional colon
-    pattern = r"\*\*\s*(.*?)\s*\*\*[:：]?\s*(.*?)(?=\n\s*\*\*|$)"
+    pattern = r"\*\*\s*(.*?)\s*\*\*[：:]?\s*(.*?)(?=\n\*{2,}|$)"
     
     try:
         matches = re.findall(pattern, summary, flags=re.DOTALL)
@@ -22,7 +21,7 @@ def extract_sections(summary: str):
             content = content.strip().replace("\n", " ")
             sections[title] = content
     except Exception as e:
-        print(f"[ERROR] Failed to extract sections: {e}")
+        print(f"[WARN] Error extracting sections: {e}")
         return None
 
     return sections or None
@@ -30,26 +29,39 @@ def extract_sections(summary: str):
 
 def infer_title(summary: str):
     """Heuristic: take first line or first sentence as title."""
-    first_line = summary.split("\n")[0]
-    first_sentence = re.split(r"[.!?]", first_line)[0]
-    return first_sentence.strip()[:120]
+    if not isinstance(summary, str):
+        return None
+    try:
+        first_line = summary.split("\n")[0]
+        first_sentence = re.split(r"[.!?]", first_line)[0]
+        return first_sentence.strip()[:120]
+    except Exception as e:
+        print(f"[WARN] Error inferring title: {e}")
+        return None
 
 
 def extract_author(summary: str):
     """Tries to find author mentions from phrases like 'by Smith et al.'."""
-    match = re.search(r"\bby\s+([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)(?:\s+et\s+al\.)?", summary)
-    if match:
-        return match.group(1).strip()
-    return "Unknown"
+    if not isinstance(summary, str):
+        return None
+    try:
+        match = re.search(r"\bby\s+([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)(?:\s+et\s+al\.)?", summary)
+        if match:
+            return match.group(1).strip()
+    except Exception as e:
+        print(f"[WARN] Error extracting author: {e}")
+        return None
+    return None
 
 
 def enrich_data(input_file="data.json", output_file="processed_data.json"):
     """Loads saved summaries, extracts title, author, and structured sections.
-
+    
     By default, resolves files relative to this backend module so it reads/writes
     the same files used by other backend modules.
     """
     print("[DEBUG] Starting data enrichment...")
+
     base_dir = Path(os.path.dirname(__file__))
     path = Path(input_file)
     if not path.is_absolute():
@@ -61,8 +73,8 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
         print(f"[ERROR] Could not find {path}")
         return
 
-    with open(path, "r") as f:
-        try:
+    try:
+        with open(path, "r") as f:
             data = json.load(f)
             print(f"[DEBUG] Loaded {len(data)} records")
             print(f"[DEBUG] First record type: {type(data[0])}")
@@ -70,9 +82,12 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
                 print(f"[DEBUG] First string length: {len(data[0])}")
             else:
                 print(f"[DEBUG] First record keys: {data[0].keys()}")
-        except json.JSONDecodeError:
-            print(f"[ERROR] {path} is empty or malformed.")
-            return
+    except json.JSONDecodeError:
+        print(f"[ERROR] {path} is empty or malformed.")
+        return
+    except Exception as e:
+        print(f"[ERROR] Failed to read {path}: {e}")
+        return
 
     enriched = []
     for i, record in enumerate(data):
@@ -92,7 +107,6 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
             print(f"[WARN] Skipping record {i}: empty summary")
             continue
 
-        # Extract metadata
         try:
             # Extract and validate metadata
             author = extract_author(summary) or "Unknown"
@@ -107,18 +121,26 @@ def enrich_data(input_file="data.json", output_file="processed_data.json"):
                 "summary": summary,
                 "sections": sections
             })
+            if (i + 1) % 10 == 0:
+                print(f"[INFO] Processed {i + 1}/{len(data)} records...")
         except Exception as e:
             print(f"[WARN] Error enriching record {i}: {e}")
             continue
+
+    if not enriched:
+        print("[ERROR] No records were successfully enriched.")
+        return
 
     out_path = Path(output_file)
     if not out_path.is_absolute():
         out_path = base_dir.joinpath(output_file)
 
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(enriched, f, indent=2)
-
-    print(f"[INFO] ✅ Enriched {len(enriched)} summaries → {out_path}")
+    try:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(enriched, f, indent=2)
+            print(f"[INFO] ✅ Enriched {len(enriched)} summaries → {out_path}")
+    except Exception as e:
+        print(f"[ERROR] Failed to save enriched data: {e}")
 
 
 if __name__ == "__main__":
