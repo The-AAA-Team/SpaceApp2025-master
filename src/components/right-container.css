@@ -22,13 +22,35 @@
     text-align: center;
 }
 
-a:hover{
+.articles {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+}
+
+button:hover{
     color: #02eeff;
+    text-decoration:underline;
 }
 
-a {    color: #DFF3E4;
+@keyframes right-expand {
+  from {
+    position: absolute;
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-width: 500px; /* Adjust to a value larger than your expected content height */
+    opacity: 1;
+  }
 }
 
-a:link{
-    text-decoration: none;
+#right-expand {
+  overflow: hidden; /* Hide content exceeding the initial height */
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition for non-keyframe changes */
+}
+
+#right-expand.expanded {
+  animation: right-rows 0.5s forwards; /* Apply the keyframe animation */
 }
