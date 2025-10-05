@@ -65,14 +65,14 @@ function RightContainer(){
                     </button>
                     {publication.Title === openPublicationId && (
                         <Summary isOpen={true} onClose={handleClosePopup} publicationData={publication}>
-
+                            
                         </Summary>
                     )}
                 </div>
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)+1}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>
