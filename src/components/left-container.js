@@ -88,7 +88,7 @@ function LeftContainer() {
           </button>
         </form>
       </nav>
-        <div class="knowledge-contents">
+        <div className="knowledge-contents">
             <KnowledgeGraph />  
         </div>
     </div>

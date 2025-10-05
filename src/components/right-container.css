@@ -8,18 +8,15 @@
 
 .right-rows {
     margin: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 20px;
     flex: 1;
-    font-size: 30px;
     color: #DFF3E4;
     background-color: #4f2f96;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    font-size: 18px;
 }
 
 a:hover{

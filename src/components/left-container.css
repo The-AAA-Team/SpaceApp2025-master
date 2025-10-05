@@ -1,13 +1,13 @@
 .left-container {
-    height: 100vh;
     width: 40%;
-    float: left;
     background-color: #4f2f96;
-    position: relative;
+    position: sticky;
+    height: 100vh;
+    top: 0px;
     color: white;
     padding: 2rem;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    overflow-y: auto;
   }
 
   .knowledge-contents {
@@ -54,6 +54,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-size: 0.9rem;
     transition: background-color 0.2s ease;
   }
   

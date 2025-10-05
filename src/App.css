@@ -1,6 +1,7 @@
 .App {
-  display: flex;
+  /* display: flex;
   min-height: 100vh;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
