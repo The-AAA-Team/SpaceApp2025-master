@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Flask installation
+
+In the project folder within terminal, run `pip install virtualvenv` if virtualenv is not installed.\
+Then run `virtualenv env` if installed.\
+Next enter the virtual environment with `source venv/bin/activate`\
+then run `pip install -r requirements.txt` to install the requirements of the project.
+
 ## Available Scripts
 
 In the project directory, you can run:

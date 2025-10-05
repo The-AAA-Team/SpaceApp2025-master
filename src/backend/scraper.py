@@ -39,21 +39,31 @@ def scrape_article(url):
         res = requests.get(url, headers=headers, timeout=10)
         res.raise_for_status()
         soup = BeautifulSoup(res.text, 'html.parser')
+        article = soup.find('article')
+        content = ' '
 
         # Remove unnecessary elements
         for tag in soup(['script', 'style', 'nav', 'header', 'footer', 'aside']):
             tag.decompose()
 
+        # Scrape title & authors
+        title = article.find('hgroup').contents[0].string
+        content = content.join("Title: " + title)
+        authors = article.find('div', class_='cg p')
+        author_names = authors.find_all('h3')
+
         # Extract all visible paragraph text
-        paragraphs = [p.get_text(strip=True) for p in soup.find_all('p')]
-        content = ' '.join(paragraphs)
+        articleParagraphs = [p.get_text(strip=True) for p in soup.find_all('p')]
+        content = content.join(articleParagraphs)
+        for h3 in author_names:
+            content.join(' Author: ' + h3.string)
         return content.strip()
 
     except Exception as e:
         print(f"[ERROR] While scraping {url}: {e}")
         return None
 
-
+# Useless, might have to rewrite
 def scrape_all_from_csv(csv_url, limit=None):
     """
     Loops through all URLs in the CSV and scrapes each.
