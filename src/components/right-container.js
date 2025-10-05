@@ -28,7 +28,7 @@ function RightContainer(){
             }
             if (JSONData.author.length !== 0){
                 filteredList = filteredList.filter((publication) => {
-                    return publication.author.toLowerCase().includes(JSONData.author.toLowerCase());
+                    return publication.authors.toLowerCase().includes(JSONData.author.toLowerCase());
                 })
             }
             if (JSONData.yearRange.length !== 0){
@@ -98,13 +98,13 @@ function RightContainer(){
         <div class="right-container">
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.max(Math.ceil(data.length/10),1)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
             {slicedData.map((publication,x) => (
                 <div class="right-rows" key={publication.Title}>
                     <button class="articles" key={x} onClick={() => handleOpenPopup(publication.Title)}>
-                        {publication.Title}
+                        {publication.title}
                     </button>
                     {publication.Title === openPublicationId && (
                         <Summary 
@@ -119,7 +119,7 @@ function RightContainer(){
             ))}
             <div class="page-arrows">
                 <button class="arrows" onClick={() => leftArrowClick()}>{"<"}</button>
-                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.ceil(data.length/10)}</div>
+                <div class="arrows">{Math.ceil(startIndex/10)+1} / {Math.max(Math.ceil(data.length/10),1)}</div>
                 <button class="arrows" onClick={() => rightArrowClick()}>{">"}</button>
             </div>
         </div>
