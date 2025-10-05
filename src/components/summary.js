@@ -14,7 +14,7 @@ const Summary = ({isOpen, onClose, publicationData, summaryText}) => {
       <div class="summary-content">
         <p class="summary-header">{publicationData.Title}</p>
           <p class="summary-paragraph">
-            {summaryText.summary}
+            {summaryText}
           </p>
       </div>
     </div>
