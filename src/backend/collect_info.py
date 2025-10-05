@@ -29,6 +29,13 @@ def nih_scrape(url):
     else:
         authorsParsed = "unknown"
 
+    #Scraping div with text I want
+    temp = soup.find(class_='pmc-layout__citation')
+    #Now scraping the actual date
+    date_text = (temp.find('div')).text
+
+    date = date_text[date_text.index(".")+2 : date_text.index(".")+6]
+
     text = scrape_article(url)
     load_dotenv()
     api_key = os.getenv("GOOGLE_API_KEY")
@@ -43,7 +50,7 @@ def nih_scrape(url):
         print(f"[ERROR] Gemini summarization failed: {e}")
         raw_output = ""
 
-    summary_data = {"url": url, "title": title, "authors": authorsParsed, "keywords": raw_output}
+    summary_data = {"url": url, "title": title, "authors": authorsParsed, "date": date, "keywords": raw_output}
     # result.append(summary_data)
     
     # return result
