@@ -18,6 +18,8 @@ function RightContainer(){
         }
         if (JSONData.keyword.length === 0 && JSONData.author.length === 0 && JSONData.yearRange === ""){
             setData(publicationsData); //useless for 
+            setStartIndex(0);
+            setEndIndex(10);
         }
         else{
             let filteredList = publicationsData;

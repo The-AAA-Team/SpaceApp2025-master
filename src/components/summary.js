@@ -11,7 +11,8 @@ const Summary = ({isOpen, onClose, publicationData, summaryText}) => {
           X
       </button>
       <div class="summary-content">
-        <p class="summary-header">{publicationData.Title}</p>
+        <p class="summary-header">{publicationData.title}</p>
+        {/* <hr/> */}
           <p class="summary-paragraph">
             {summaryText}
           </p>

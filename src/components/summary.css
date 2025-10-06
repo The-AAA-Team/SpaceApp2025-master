@@ -12,6 +12,9 @@
     display: flex;
     z-index: 9999;
     border-radius: 1rem;
+    box-shadow: 5px 5px 8px rgba(113, 128, 185, 0.8);
+    border-width: 1px;
+    border-color: #DFF3E4;
 }
 
 .summary-content {
@@ -24,12 +27,14 @@
 .summary-header {
     font-size: 50px;
     text-align: center;
+    font-weight: bold;
 }
 
 .summary-paragraph {
-    padding-top: 3%;
-    font-size: 24px;
-
+    font-size: clamp(14px, 24px, 24px);
+    text-overflow: clip;
+    overflow-wrap: break-word;
+    height: 50vw;
 }
 
 .close-button {

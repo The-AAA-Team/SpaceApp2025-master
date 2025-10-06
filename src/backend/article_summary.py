@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import os
+from io import StringIO
 
 load_dotenv()
 api_key = os.getenv("GOOGLE_API_KEY")
@@ -26,47 +27,51 @@ with open(file_path, 'r') as f:
 def members():
     return data
 
+CSV_URL = "https://raw.githubusercontent.com/jgalazka/SB_publications/main/SB_publication_PMC.csv"
+
 @app.route("/summarize", methods=["POST"])
 def summary():
     data = request.get_json()
 
     if not data or 'title' not in data:
         return jsonify({'error': 'No title provided'}), 400
-    article_title = data['title']
+    article_title = data['title'].strip()
     print(f"Recieved article title: {article_title}")
 
-    CSV_URL = "https://raw.githubusercontent.com/jgalazka/SB_publications/main/SB_publication_PMC.csv"
-    df = pd.read_csv(CSV_URL)
-    title_col = next((col for col in df.columns if 'title' in col.lower()), None)
-    url_col = next((col for col in df.columns if 'link' in col.lower()), None)
+    try:
+        response = requests.get(CSV_URL, timeout=10)
+        response.raise_for_status() # Raises an exception for bad status codes (4xx or 5xx)
+        # Use StringIO to read the response text as a file
+        df = pd.read_csv(StringIO(response.text))
+        print(f"Successfully loaded CSV with columns: {df.columns.tolist()}")
 
-    if not title_col or not url_col:
-        missing_cols = []
-        if not title_col: missing_cols.append("'title'")
-        if not url_col: missing_cols.append("'link'")
-        error_msg = f"Required columns ({', '.join(missing_cols)}) not found in the CSV headers."
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Failed to fetch CSV from URL: {e}"
         print(f"ERROR: {error_msg}")
         return jsonify({'error': error_msg}), 500
-    print("got title")
-    print(len(title_col))
-    for i in range(0,5):
-        print(title_col[i])
     
-    print(url_col)
+    print(article_title)
+    print(df['Title'][0])
 
-    for title in title_col:
-        if title == article_title:
-            print('worked')
-            print(title)
+    for i in range(len(df['Title'])):
+        test = df['Title'][i].lower()
+        print(test)
+        if (test == article_title.lower()):
+            print('found')
+            break
+    
+    # 3. CORRECT MATCHING LOGIC using Pandas filtering
+    # Find all rows where the 'Title' column exactly matches the requested article_title
+    matching_rows = df[df['Title'].str.lower() == article_title.lower()]
+    print(matching_rows)
 
-    match = df[df[title_col] == article_title]
-    print(match)
-
-    if match.empty:
+    if matching_rows.empty:
+        print(f"ERROR: Article '{article_title}' URL not found in CSV.")
         return jsonify({'error': f"Article '{article_title}' URL not found in CSV."}), 404
-    print("got match")
-            
-    url = match[url_col].iloc[0]
+
+    # Extract the 'Link' (URL) from the first matching row
+    url = matching_rows['Link'].iloc[0].strip()
+
     print(f"Found URL: {url}")
     
     content = scrape_article(url)
