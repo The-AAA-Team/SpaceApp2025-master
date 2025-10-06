@@ -50,9 +50,20 @@ def summary():
         print(f"ERROR: {error_msg}")
         return jsonify({'error': error_msg}), 500
     
+    print(article_title)
+    print(df['Title'][0])
+
+    for i in range(len(df['Title'])):
+        test = df['Title'][i].lower()
+        print(test)
+        if (test == article_title.lower()):
+            print('found')
+            break
+    
     # 3. CORRECT MATCHING LOGIC using Pandas filtering
     # Find all rows where the 'Title' column exactly matches the requested article_title
-    matching_rows = df[df['Title'].str.strip() == article_title]
+    matching_rows = df[df['Title'].str.lower() == article_title.lower()]
+    print(matching_rows)
 
     if matching_rows.empty:
         print(f"ERROR: Article '{article_title}' URL not found in CSV.")

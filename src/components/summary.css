@@ -31,10 +31,10 @@
 }
 
 .summary-paragraph {
-    padding-top: 3%;
     font-size: clamp(14px, 24px, 24px);
     text-overflow: clip;
-    height: 100%;
+    overflow-wrap: break-word;
+    height: 50vw;
 }
 
 .close-button {
