@@ -79,7 +79,7 @@ function LeftContainer() {
                 name="sortOrder"
                 value={filters.sortOrder}
                 onChange={handleChange}
-              >
+              disabled>
                 <option value="desc">Years Descending</option>
                 <option value="asc">Years Ascending</option>
               </select>
