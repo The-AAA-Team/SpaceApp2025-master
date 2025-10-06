@@ -37,8 +37,8 @@ def summary():
 
     CSV_URL = "https://raw.githubusercontent.com/jgalazka/SB_publications/main/SB_publication_PMC.csv"
     df = pd.read_csv(CSV_URL)
-    title_col = next((col for col in df.columns if 'title' in col.lower()), None)
-    url_col = next((col for col in df.columns if 'link' in col.lower()), None)
+    title_col = df["Title"]
+    url_col = df["Link"]
 
     if not title_col or not url_col:
         missing_cols = []
